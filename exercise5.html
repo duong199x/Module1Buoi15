@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Ứng dụng quản lý sản phẩm sử dụng hàm</title>
+    <style>
+        table, tr, td {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 50%;
+        }
+
+        button {
+
+        }
+
+    </style>
+</head>
+<body>
+<h1>Add new product</h1>
+<input id="ButtonAdd" type="text">
+<button onclick="addProduct()">Add</button>
+<h1>Display All Product</h1>
+<input id="find" onchange="find()" placeholder="Tìm kiếm" type="text">
+<br>
+<table id="table">
+</table>
+<button>Trước</button>
+<span>1</span>
+<button>Sau</button>
+<br>
+<div id="edit">
+</div>
+</body>
+</html>
+<script>
+    let arrSp = ['Sony Xperia', 'Samsung Galaxy', 'Nokia 6', 'Xiaomi Redmi Note 4', 'Sony Xperia Z1', 'nokia 7', 'nokia 8', 'nokia 9', 'nokia 10', 'nokia 11']
+    showTable(arrSp)
+
+    function showTable(arrSp) {
+        let str = ''
+        for (let i = 0; i < arrSp.length; i++) {
+            str += `
+           <tr>
+            <td style="text-align: center; width: 50px">${i + 1}</td>
+            <td>${arrSp[i]}</td>
+            <td width = '40px'><button onclick="showEditProduct(${i})">Edit</button></td>
+            <td width = '55px'><button onclick="deleteProduct(${i})">Delete</button></td>
+           </tr>`
+        }
+        document.getElementById('table').innerHTML = str
+    }
+
+    function addProduct() {
+        //Oppo A71
+        if (document.getElementById('ButtonAdd').value === '') {
+            alert("Nhập giá trị")
+        } else {
+            arrSp.push(document.getElementById('ButtonAdd').value);
+        }
+        document.getElementById('ButtonAdd').value = '';
+        showTable(arrSp);
+    }
+
+
+    function deleteProduct(index) {
+        arrSp.splice(index, 1)
+        showTable(arrSp)
+    }
+
+    function showEditProduct(index) {
+        let productEdit = arrSp[index];
+        let formEdit = `
+        <input type="text" value="${productEdit}" id="productEdit">
+        <button onclick="save(${index})">Save</button>
+        `
+        document.getElementById('edit').innerHTML = formEdit
+    }
+
+    function save(index) {
+        let newProduct = document.getElementById('productEdit').value;
+        arrSp[index] = newProduct;
+        document.getElementById('edit').style.display = 'none'
+        showTable(arrSp)
+    }
+
+    function find() {
+        let value = document.getElementById('find').value;
+        if (value === '') {
+            showTable(arrSp)
+            //tìm kiếm 1 phần tử cụ thể
+        } else {
+            //     let arrFind = []
+            //     for (let i = 0; i < arrSp.length; i++) {
+            //         if (arrSp[i] === value) {
+            //             arrFind.push(arrSp[i]);
+            //         }
+            //     }
+            //     showTable(arrFind)
+            //tìm kiếm 1 phần tử theo từ
+            let arrFind = []
+            for (let i = 0; i < arrSp.length; i++) {
+                let valueSp = arrSp[i].toLowerCase();
+                if (valueSp.indexOf(value) !== -1) {
+                    arrFind.push(arrSp[i])
+                }
+
+            }
+            showTable(arrFind)
+        }
+    }
+
+</script>

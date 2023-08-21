@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+<p id="convert1"></p>
+<p id="convert2"></p>
+</body>
+</html>
+<script>
+    function footToMeter(foot) {
+        let meter = 0.305 * foot;
+        return meter;
+    }
+
+    function meterToFoot(meter) {
+        let foot = 3.279 * meter;
+        return foot;
+    }
+
+    let foot = prompt("nhập foot");
+    let meter = prompt("nhập meter");
+    document.getElementById('convert1').innerHTML = `${foot} foot = ${footToMeter((foot))} meter`
+    document.getElementById('convert2').innerHTML = `${meter} meter = ${meterToFoot((meter))} foot`
+</script>

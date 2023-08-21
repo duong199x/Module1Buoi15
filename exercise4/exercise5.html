@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let so1 = prompt("nhập a")
+    let so2 = prompt("nhập b")
+    let so3 = prompt("nhập c")
+
+    function min(a, b, c) {
+        let arr = [a, b, c]
+        let min = arr[0]
+        for (let i = 0; i < arr.length; i++) {
+            if (min > arr[i]) {
+                min = arr[i];
+            }
+        }
+        return min
+    }
+
+    console.log(min(so1, so2, so3))
+
+</script>
